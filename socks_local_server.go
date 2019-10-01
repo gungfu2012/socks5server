@@ -11,8 +11,8 @@ import (
 )
 
 const bufmax = 4096 //最大缓存区大小
-//var addr = flag.String("addr", "gungfuweb.cfapps.io:4443", "https service address")
-var addr = flag.String("addr", "127.0.0.1:8080", "http service address")
+var addr = flag.String("addr", "gungfusocksweb.cfapps.io:4443", "https service address")
+//var addr = flag.String("addr", "127.0.0.1:8080", "http service address")
 
 func tun2remote(conn net.Conn, conn_ws *websocket.Conn) {
 	var buf [bufmax]byte
@@ -61,8 +61,8 @@ func main() {
 			log.Fatal(err)
 			continue
 		}
-		//u := url.URL{Scheme: "wss", Host: *addr, Path: "/echo"}
-		u := url.URL{Scheme: "ws", Host: *addr, Path: "/echo"}
+		u := url.URL{Scheme: "wss", Host: *addr, Path: "/echo"}
+		//u := url.URL{Scheme: "ws", Host: *addr, Path: "/echo"}
 		conn_ws, _, err := websocket.DefaultDialer.Dial(u.String(), nil)
 		if err != nil {
 			log.Fatal(err)
